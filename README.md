@@ -11,3 +11,4 @@
 5. gifwidget 屏幕录制控件
 6. comtool 串口调试助手
 7. nettool 网络调试助手
+8. devicesizetable 硬盘容量控件
