@@ -1,4 +1,4 @@
-﻿#pragma execution_character_set("utf-8")
+#pragma execution_character_set("utf-8")
 
 #include "frmmovewidget.h"
 #include "ui_frmmovewidget.h"
@@ -39,8 +39,3 @@ void frmMoveWidget::initForm()
     MoveWidget *moveWidget3 = new MoveWidget(this);
     moveWidget3->setWidget(bar);
 }
-
-
-
-
-
