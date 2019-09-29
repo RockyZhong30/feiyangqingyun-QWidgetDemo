@@ -7,3 +7,5 @@
 1. lightbutton 高亮按钮控件
 2. movewidget 通用控件移动类
 3. flatui 模仿flatui类
+4. countcode 代码统计组件
+5. gifwidget 屏幕录制控件
