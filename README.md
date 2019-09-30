@@ -11,3 +11,5 @@
 7. nettool 网络调试助手
 8. devicesizetable 硬盘容量控件
 9. styledemo qss 高仿PS黑色+扁平白色+淡蓝色风格主题
+10. navbutton 导航按钮控件
+11. video_splite 视频监控画面分割demo
