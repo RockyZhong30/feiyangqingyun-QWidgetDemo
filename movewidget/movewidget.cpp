@@ -7,6 +7,7 @@ MoveWidget::MoveWidget(QObject *parent) : QObject(parent)
     lastPoint = QPoint(0, 0);
     pressed = false;
     leftButton = true;
+    inControl = true;
     widget = 0;
 }
 
@@ -29,7 +30,23 @@ bool MoveWidget::eventFilter(QObject *watched, QEvent *event)
             //计算坐标偏移值,调用move函数移动过去
             int offsetX = mouseEvent->pos().x() - lastPoint.x();
             int offsetY = mouseEvent->pos().y() - lastPoint.y();
-            widget->move(widget->x() + offsetX, widget->y() + offsetY);
+            int x = widget->x() + offsetX;
+            int y = widget->y() + offsetY;
+            if (inControl) {
+                //可以自行调整限定在容器中的范围,这里默认保留20个像素在里面
+                int offset = 20;
+                bool xyOut = (x + widget->width() < offset || y + widget->height() < offset);
+                bool whOut = false;
+                QWidget *w = (QWidget *)widget->parent();
+                if (w != 0) {
+                    whOut = (w->width() - x < offset || w->height() - y < offset);
+                }
+                if (xyOut || whOut) {
+                    return false;
+                }
+            }
+
+            widget->move(x, y);
         } else if (mouseEvent->type() == QEvent::MouseButtonRelease && pressed) {
             pressed = false;
         }
@@ -49,4 +66,9 @@ void MoveWidget::setWidget(QWidget *widget)
 void MoveWidget::setLeftButton(bool leftButton)
 {
     this->leftButton = leftButton;
+}
+
+void MoveWidget::setInControl(bool inControl)
+{
+    this->inControl = inControl;
 }
